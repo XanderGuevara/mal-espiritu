@@ -34,15 +34,37 @@ const { title } = Astro.props;
 		<slot />
 
 		<!-- CURSOR FANTASMA -->
-		<div id="cursor-light" class="fixed top-0 left-0 w-32 h-32 bg-red-600 rounded-full blur-[50px] opacity-60 pointer-events-none z-[9999] transition-transform duration-100 ease-out mix-blend-screen hidden md:block"></div>
+		<aside id="cursor-light" aria-hidden="true" class="fixed top-0 left-0 w-32 h-32 bg-red-600 rounded-full blur-[50px] opacity-60 pointer-events-none z-[9999] transition-transform duration-100 ease-out mix-blend-screen hidden md:block"></aside>
 
 		<script>
 			const cursor = document.getElementById('cursor-light');
+			const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const parallaxItems = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
+			let frame = 0;
+
 			document.addEventListener('mousemove', (e) => {
 				if (cursor) {
 					cursor.style.transform = `translate(${e.clientX - 64}px, ${e.clientY - 64}px)`;
 				}
 			});
+
+			const updateParallax = () => {
+				frame = 0;
+				if (prefersReducedMotion.matches) return;
+
+				for (const item of parallaxItems) {
+					const speed = Number(item.dataset.parallax || 0);
+					const rect = item.getBoundingClientRect();
+					const offset = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * speed;
+					item.style.setProperty('--parallax-offset', `${offset.toFixed(2)}px`);
+				}
+			};
+
+			window.addEventListener('scroll', () => {
+				if (!frame) frame = requestAnimationFrame(updateParallax);
+			}, { passive: true });
+			window.addEventListener('resize', updateParallax);
+			updateParallax();
 		</script>
 	</body>
 </html>

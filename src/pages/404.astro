@@ -12,7 +12,7 @@ import fondo from '../fondo.jpg';
     <main class="relative h-screen w-full flex flex-col justify-center items-center bg-black overflow-hidden text-center px-6">
 
         <!-- 1. FONDO (AHORA MÁS VISIBLE) -->
-        <div class="absolute inset-0 z-0">
+        <section class="absolute inset-0 z-0">
             <!-- Subí la opacidad al 50% para que se vea la estatua -->
             <img
                 src={fondo.src}
@@ -20,20 +20,20 @@ import fondo from '../fondo.jpg';
                 alt="Fondo vacío"
             />
             <!-- Bajé el velo negro al 60% para que no tape tanto -->
-            <div class="absolute inset-0 bg-black/60"></div>
+            <section class="absolute inset-0 bg-black/60"></section>
             <!-- Degradado solo abajo para que el footer no flote -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
-        </div>
+            <section class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></section>
+        </section>
 
         <!-- 2. EL NÚMERO 404 GIGANTE -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none w-full">
+        <section class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none w-full">
             <h1 class="text-[180px] md:text-[400px] font-bold text-red-900/30 font-serif leading-none blur-[2px] opacity-80">
                 404
             </h1>
-        </div>
+        </section>
 
         <!-- 3. CONTENIDO PRINCIPAL -->
-        <div class="relative z-10 flex flex-col items-center max-w-2xl mx-auto">
+        <section class="relative z-10 flex flex-col items-center max-w-2xl mx-auto">
 
             <h2 class="text-5xl md:text-7xl text-white font-serif tracking-widest drop-shadow-2xl mb-6">
                 Expediente <span class="text-red-600 italic">Perdido</span>
@@ -50,7 +50,7 @@ import fondo from '../fondo.jpg';
                 </span>
             </a>
 
-        </div>
+        </section>
     </main>
 
 </Layout>
