@@ -5,6 +5,8 @@ import Navbar from '../components/Navbar.astro';
 import { getCollection } from 'astro:content';
 
 const allHistorias = await getCollection('historias');
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const publicUrl = (path: string) => path.startsWith('/') ? `${base}${path}` : path;
 ---
 
 <Layout title="Archivo de Relatos">
@@ -48,9 +50,9 @@ const allHistorias = await getCollection('historias');
                     >
 
                         <!-- ENLACE IMAGEN -->
-                        <a href={`/historias/${historia.id.split('.')[0]}`} class="overflow-hidden h-56 relative block">
+                        <a href={`${base}/historias/${historia.id.split('.')[0]}`} class="overflow-hidden h-56 relative block">
                             <img
-                                src={historia.data.image}
+                                src={publicUrl(historia.data.image)}
                                 alt={historia.data.title}
                                 class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                             />
@@ -61,14 +63,14 @@ const allHistorias = await getCollection('historias');
                             <!-- TAGS -->
                             <section class="flex flex-wrap gap-2 mb-3">
                                 {historia.data.tags && historia.data.tags.map((tag) => (
-                                    <a href={`/categorias/${tag}`} class="text-[9px] border border-neutral-800 text-neutral-500 px-2 py-0.5 rounded-sm uppercase tracking-wider bg-black/50 hover:border-red-900 hover:text-white transition z-20">
+                                    <a href={`${base}/categorias/${tag}`} class="text-[9px] border border-neutral-800 text-neutral-500 px-2 py-0.5 rounded-sm uppercase tracking-wider bg-black/50 hover:border-red-900 hover:text-white transition z-20">
                                         {tag}
                                     </a>
                                 ))}
                             </section>
 
                             <!-- TEXTO -->
-                            <a href={`/historias/${historia.id.split('.')[0]}`} class="block">
+                            <a href={`${base}/historias/${historia.id.split('.')[0]}`} class="block">
                                 <span class="text-red-700 text-[10px] font-bold tracking-widest uppercase mb-2 block">
                                     {historia.data.location}
                                 </span>
