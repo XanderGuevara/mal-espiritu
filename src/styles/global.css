@@ -67,8 +67,55 @@ body::after {
 }
 
 .hero-fog {
-    opacity: 0.22;
-    filter: contrast(1.25) brightness(0.72);
+    opacity: 0.48;
+    filter: blur(2px) contrast(1.18) brightness(0.82);
+    background-repeat: repeat-x;
+    background-size: 110% 100%;
+    animation-duration: 42s;
+}
+
+.hero-fog::before,
+.hero-fog::after {
+    content: "";
+    position: absolute;
+    inset: 12% -18%;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 18% 55%, rgba(210, 210, 210, 0.42) 0 8%, transparent 24%),
+        radial-gradient(ellipse at 52% 42%, rgba(155, 155, 155, 0.34) 0 10%, transparent 27%),
+        radial-gradient(ellipse at 82% 58%, rgba(205, 205, 205, 0.38) 0 9%, transparent 25%);
+    filter: blur(22px);
+    mix-blend-mode: screen;
+}
+
+.hero-fog::before {
+    opacity: 0.75;
+    animation: fog-drift 34s ease-in-out infinite alternate;
+}
+
+.hero-fog::after {
+    inset: 28% -24% 0;
+    opacity: 0.48;
+    transform: scaleX(1.22);
+    animation: fog-drift-reverse 48s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+    0% {
+        transform: translate3d(-8%, 3%, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(12%, -4%, 0) scale(1.12);
+    }
+}
+
+@keyframes fog-drift-reverse {
+    0% {
+        transform: translate3d(10%, -2%, 0) scaleX(1.22);
+    }
+    100% {
+        transform: translate3d(-14%, 4%, 0) scaleX(1.08);
+    }
 }
 
 .hero-grain {
@@ -137,6 +184,11 @@ body::after {
     .animate-fade-in-up {
         animation: none !important;
     }
+
+    .hero-fog::before,
+    .hero-fog::after {
+        animation: none;
+    }
 }
 
 /* Títulos con tipografía elegante */
@@ -198,7 +250,15 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-fog {
-        opacity: 0.14;
+        opacity: 0.28;
+    }
+
+    .hero-fog::before {
+        opacity: 0.58;
+    }
+
+    .hero-fog::after {
+        opacity: 0.28;
     }
 
     #cursor-light {
