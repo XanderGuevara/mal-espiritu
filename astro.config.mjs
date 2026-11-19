@@ -3,7 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://mal-espiritu.pages.dev',
+  site: 'https://xanderguevara.github.io',
+  base: '/mal-espiritu',
   integrations: [
     tailwind(),
     sitemap()

@@ -16,6 +16,42 @@ html, body {
     overflow-x: hidden;
 }
 
+body {
+    background:
+        radial-gradient(circle at 50% -10%, rgba(127, 29, 29, 0.18), transparent 38rem),
+        #050505;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+}
+
+body::before {
+    background: radial-gradient(ellipse at center, transparent 38%, rgba(0, 0, 0, 0.72) 100%);
+}
+
+body::after {
+    opacity: 0.08;
+    background-image: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.12) 4px);
+    mix-blend-mode: overlay;
+}
+
+[data-parallax] {
+    transform: translate3d(0, var(--parallax-offset, 0px), 0);
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-parallax] {
+        transform: none;
+    }
+}
+
 /* Títulos con tipografía elegante */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;

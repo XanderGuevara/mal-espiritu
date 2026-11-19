@@ -3,7 +3,7 @@
 ---
 <!-- BARRA SUPERIOR (Navbar) -->
 <nav class="fixed w-full z-50 top-0 bg-black/90 backdrop-blur-md border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-50">
+    <section class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-50">
 
         <!-- LOGO -->
         <a href="/" class="text-2xl font-bold tracking-[0.2em] text-white hover:text-red-600 transition duration-500 font-serif">
@@ -18,7 +18,7 @@
         </ul>
 
         <!-- ZONA DERECHA: AUDIO + MENÚ MÓVIL -->
-        <div class="flex items-center gap-5">
+        <section class="flex items-center gap-5">
 
             <!-- 🔊 BOTÓN DE AUDIO -->
             <button id="audio-btn" class="text-gray-400 hover:text-red-500 transition focus:outline-none group" aria-label="Activar sonido ambiente">
@@ -37,19 +37,19 @@
 
             <!-- BOTÓN HAMBURGUESA (MÓVIL) -->
             <button id="menu-btn" class="md:hidden text-white focus:outline-none group relative z-50">
-                <div class="w-6 h-6 flex flex-col justify-center items-end gap-1.5">
+                <section class="w-6 h-6 flex flex-col justify-center items-end gap-1.5">
                     <span id="line-1" class="bg-white h-0.5 w-full transition-all duration-300 group-hover:bg-red-500"></span>
                     <span id="line-2" class="bg-white h-0.5 w-2/3 transition-all duration-300 group-hover:w-full group-hover:bg-red-500"></span>
                     <span id="line-3" class="bg-white h-0.5 w-full transition-all duration-300 group-hover:bg-red-500"></span>
-                </div>
+                </section>
             </button>
-        </div>
+        </section>
 
-    </div>
+    </section>
 
     <!-- MENÚ MÓVIL -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black z-[999] flex flex-col justify-center items-center translate-x-full transition-transform duration-300 ease-in-out md:hidden h-screen w-screen">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-black to-black pointer-events-none"></div>
+    <section id="mobile-menu" class="fixed inset-0 bg-black z-[999] flex flex-col justify-center items-center translate-x-full transition-transform duration-300 ease-in-out md:hidden h-screen w-screen">
+        <section class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-black to-black pointer-events-none"></section>
 
         <ul class="flex flex-col gap-10 text-center z-10 relative">
             <li><a href="/" class="mobile-link text-4xl font-serif text-white hover:text-red-600 transition block py-2">Inicio</a></li>
@@ -57,7 +57,7 @@
             <li><a href="/#buzon" class="mobile-link text-4xl font-serif text-white hover:text-red-600 transition block py-2">Confesar Historia</a></li>
         </ul>
         <p class="absolute bottom-10 text-neutral-600 text-xs tracking-widest">© Mal Espíritu</p>
-    </div>
+    </section>
 </nav>
 
 <script>

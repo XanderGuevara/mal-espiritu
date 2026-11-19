@@ -35,34 +35,34 @@ const currentUrl = Astro.url.href;
             loading="eager"
         />
 
-        <div class="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-black to-transparent z-10"></div>
-        <div class="absolute bottom-0 inset-x-0 h-[500px] bg-gradient-to-t from-[#050505] via-[#050505] to-transparent z-10"></div>
+        <section class="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-black to-transparent z-10"></section>
+        <section class="absolute bottom-0 inset-x-0 h-[500px] bg-gradient-to-t from-[#050505] via-[#050505] to-transparent z-10"></section>
 
-        <div class="absolute bottom-0 left-0 w-full p-6 md:p-20 max-w-5xl mx-auto z-20 pb-32">
+        <section class="absolute bottom-0 left-0 w-full p-6 md:p-20 max-w-5xl mx-auto z-20 pb-32">
             <span class="inline-block py-1 px-3 border border-red-900/50 bg-red-950/20 text-red-500 tracking-[0.3em] text-xs font-bold uppercase mb-6 backdrop-blur-sm rounded-sm">
                 {historia.data.location}
             </span>
             <h1 class="text-5xl md:text-7xl lg:text-8xl text-white font-serif drop-shadow-2xl leading-none mb-4">
                 {historia.data.title}
             </h1>
-        </div>
+        </section>
     </header>
 
     <!-- CONTENIDO -->
     <main class="bg-[#050505] min-h-screen pb-20 relative z-20">
         <article class="max-w-3xl mx-auto px-6 -mt-20">
 
-            <div class="contenido-historia text-gray-300 leading-relaxed text-lg md:text-xl font-light">
+            <section class="contenido-historia text-gray-300 leading-relaxed text-lg md:text-xl font-light">
                 <Content />
-            </div>
+            </section>
 
             <!-- COMPARTIR (ACCESIBILIDAD MEJORADA) -->
-            <div class="mt-20 pt-10 border-t border-red-900/20">
+            <section class="mt-20 pt-10 border-t border-red-900/20">
                 <p class="text-center text-[10px] text-gray-600 uppercase tracking-[0.3em] mb-8 font-bold">
                     Difunde el miedo
                 </p>
 
-                <div class="flex justify-center gap-6">
+                <section class="flex justify-center gap-6">
                     <!-- WhatsApp -->
                     <a
                         href={`https://api.whatsapp.com/send?text=Tienes que leer esta historia: ${currentUrl}`}
@@ -106,14 +106,14 @@ const currentUrl = Astro.url.href;
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                     </button>
 
-                </div>
-            </div>
+                </section>
+            </section>
 
-            <div class="mt-16 text-center border-t border-white/10 pt-10">
+            <section class="mt-16 text-center border-t border-white/10 pt-10">
                 <a href="/" class="inline-flex items-center gap-2 text-gray-500 hover:text-white transition duration-300 text-sm uppercase tracking-[0.2em] group border-b border-transparent hover:border-red-900 pb-1">
                     <span class="group-hover:-translate-x-1 transition-transform">←</span> Volver al Archivo
                 </a>
-            </div>
+            </section>
 
         </article>
     </main>
