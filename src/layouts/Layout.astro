@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -17,7 +18,7 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Archivo global de fenómenos paranormales. Historias reales de terror, fantasmas y misterios sin resolver." />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/img/favicon.png" />
+		<link rel="icon" type="image/png" href={`${base}/img/favicon.png`} />
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- Fuentes Google -->
@@ -39,24 +40,45 @@ const { title } = Astro.props;
 		<script>
 			const cursor = document.getElementById('cursor-light');
 			const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+			const coarsePointer = window.matchMedia('(pointer: coarse)');
 			const parallaxItems = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
 			let frame = 0;
+			let pointerX = 0;
+			let pointerY = 0;
 
 			document.addEventListener('mousemove', (e) => {
-				if (cursor) {
-					cursor.style.transform = `translate(${e.clientX - 64}px, ${e.clientY - 64}px)`;
+				if (cursor && !coarsePointer.matches) {
+					cursor.style.transform = `translate3d(${e.clientX - 64}px, ${e.clientY - 64}px, 0)`;
 				}
+				pointerX = (e.clientX / window.innerWidth - 0.5) * 12;
+				pointerY = (e.clientY / window.innerHeight - 0.5) * 12;
+				if (!frame) frame = requestAnimationFrame(updateParallax);
+			});
+
+			document.addEventListener('mouseleave', () => {
+				pointerX = 0;
+				pointerY = 0;
+				if (!frame) frame = requestAnimationFrame(updateParallax);
 			});
 
 			const updateParallax = () => {
 				frame = 0;
-				if (prefersReducedMotion.matches) return;
+				if (prefersReducedMotion.matches || coarsePointer.matches) {
+					for (const item of parallaxItems) {
+						item.style.setProperty('--parallax-offset', '0px');
+						item.style.setProperty('--parallax-x', '0px');
+						item.style.setProperty('--parallax-y', '0px');
+					}
+					return;
+				}
 
 				for (const item of parallaxItems) {
 					const speed = Number(item.dataset.parallax || 0);
 					const rect = item.getBoundingClientRect();
 					const offset = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * speed;
 					item.style.setProperty('--parallax-offset', `${offset.toFixed(2)}px`);
+					item.style.setProperty('--parallax-x', `${(pointerX * speed * 2).toFixed(2)}px`);
+					item.style.setProperty('--parallax-y', `${(pointerY * Math.abs(speed)).toFixed(2)}px`);
 				}
 			};
 
